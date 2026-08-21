@@ -1,0 +1,60 @@
+name: Deploy
+
+# Every push to main republishes. The build is the only gate there is, so a push that
+# fails to build never reaches the deploy job and the site already on Pages stays up.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# deploy-pages mints an OIDC token to prove to Pages which run is asking, and needs
+# write access to Pages to hand over the artifact. Nothing here writes to the
+# repository, so contents stays read.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Two pushes in quick succession must not race to publish. Queue rather than cancel:
+# cancelling a deploy midway would leave whichever half-finished run got there last
+# as the live site.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          # package.json pins engines to >=22.
+          node-version: 22
+          cache: npm
+
+      # ci rather than install. The lockfile is what was tested; a lockfile that has
+      # drifted from package.json should fail here rather than be quietly re-resolved
+      # into a different set of dependencies than the one anyone ran locally.
+      - run: npm ci
+
+      # starlight-links-validator runs inside this build and unconditionally, so a
+      # broken internal link fails the run rather than shipping a 404.
+      - run: npm run build
+
+      # dist/ carries public/ verbatim, CNAME included, so the custom domain survives
+      # every deploy without this workflow knowing what the domain is.
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

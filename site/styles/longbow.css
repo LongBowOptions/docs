@@ -1,0 +1,685 @@
+/*
+ * The web half of one palette.
+ *
+ * Several tokens below are named for a print colour. They were set that way when this
+ * folder also typeset the papers and every value had a counterpart under the same name in
+ * the print theme, so the renderings could be checked against each other rather than
+ * drifting into two colour schemes that merely resemble one another. That typesetting has
+ * left this package and the names are kept: the light theme is still paper, the dark theme
+ * is still the cover, and --ink-900 and --gold-400 are still the two values the landing
+ * page at longbowoptions.com is built on. One design in three renderings rather than three
+ * that agree by coincidence.
+ *
+ * Gold is always the note leg and lapis always the option leg, which the cover legend
+ * teaches and no diagram may contradict. The landing page's mint and red are deliberately
+ * not carried across. There they say whether a number is a gain or a loss, and a third
+ * accent meaning something else again would blunt the one association this document
+ * exists to teach.
+ *
+ * Polarity follows Starlight, not this file's own history. Starlight defines its dark
+ * palette on bare :root and its light palette under [data-theme='light'], so declaring
+ * these in the opposite order would invert every piece of chrome it styles for itself.
+ * Dark first is also the arrival most readers get, since site/overrides/ThemeProvider
+ * resolves an unset preference to dark rather than to the operating system.
+ */
+
+@import "@fontsource-variable/figtree/index.css";
+@import "@fontsource/spectral/400.css";
+@import "@fontsource/spectral/400-italic.css";
+@import "@fontsource/spectral/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+/* --------------------------------------------------------------------------
+   Type.
+
+   Figtree is the brand face in the literal sense: brand/FullLogo.svg sets the
+   wordmark in Figtree Black, so the site's headings are cut from the same face
+   as the logo above them. Chrome is Figtree and running prose is Spectral, the
+   face the PDF is set in, which keeps a chapter reading like the typeset
+   edition of itself while the furniture around it reads like the landing page.
+
+   The variable package registers the family as "Figtree Variable" and carries
+   300 to 900 in one file, so the five weights the landing page loads separately
+   cost one request here. Plain "Figtree" follows it for anyone who has the
+   static face installed locally.
+-------------------------------------------------------------------------- */
+
+:root {
+  --lb-font-display: "Figtree Variable", "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --lb-font-prose: "Spectral", Georgia, "Times New Roman", serif;
+  --lb-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Starlight composes these into its own stacks with the system fonts appended. */
+  --sl-font: var(--lb-font-display);
+  --sl-font-mono: var(--lb-font-mono);
+
+  --lb-ls-label: 0.14em;
+  --lb-ls-display: -0.02em;
+
+  /* The document is flat and square, as it is on paper. The furniture around it
+     is softened to the landing page's scale, which is why these stop at 16px. */
+  --lb-radius-control: 6px;
+  --lb-radius-md: 8px;
+  --lb-radius-lg: 12px;
+  --lb-radius-xl: 16px;
+  --lb-radius-pill: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   Dark: the landing page's ramp, which is also the PDF's cover.
+-------------------------------------------------------------------------- */
+
+:root {
+  /* Surfaces. These never had a counterpart in the print body palette because a
+     printed page has no dark body; they pair with the cover instead. */
+  --lb-surface-page: #0b120d;
+  --lb-surface-nav: #080d09;
+  --lb-surface-card: #131f17;
+  --lb-surface-inset: #0c140f;
+  --lb-surface-green: #1f392c;
+  --lb-hairline: rgba(212, 178, 93, 0.14);
+  --lb-hairline-strong: rgba(212, 178, 93, 0.3);
+  --lb-accent-soft: rgba(212, 178, 93, 0.1);
+
+  /* The tokens named for a print colour. See the note at the top of the file. */
+  --lb-ink: #f0ecdd;
+  --lb-ink-soft: #c8ccbe;
+  --lb-muted: #8d9384;
+  --lb-rule: rgba(212, 178, 93, 0.14);
+  --lb-panel: #131f17;
+  --lb-panel-line: rgba(212, 178, 93, 0.14);
+  --lb-gold: #d4b25d;
+  --lb-lapis: #6ba3d6;
+  --lb-lapis-soft: #16242f;
+  --lb-warn: #d08a63;
+
+  --lb-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.32);
+  --lb-shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.42);
+  --lb-inset-well: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  /* Starlight's own tokens, so the nav, sidebar, search, pagination and every
+     other piece of chrome it draws for itself follows the brand rather than its
+     default blue. Everything below is a restatement of the values above. */
+  --sl-color-bg: var(--lb-surface-page);
+  --sl-color-bg-nav: var(--lb-surface-nav);
+  --sl-color-bg-sidebar: var(--lb-surface-nav);
+  --sl-color-bg-inline-code: #16241a;
+  --sl-color-bg-accent: var(--lb-gold);
+  --sl-color-backdrop-overlay: rgba(8, 13, 9, 0.72);
+  /* The bar's own surface. Distinct from the backdrop overlay above, which is the
+     scrim behind a modal and is dark in both themes because a scrim always is. */
+  --lb-nav-bg: rgba(8, 13, 9, 0.72);
+
+  --sl-color-white: #f5f1e4;
+  --sl-color-gray-1: #e4e0d0;
+  --sl-color-gray-2: #c6c9bc;
+  --sl-color-gray-3: #909586;
+  --sl-color-gray-4: #6b7166;
+  --sl-color-gray-5: var(--lb-surface-green);
+  --sl-color-gray-6: #16241a;
+  --sl-color-gray-7: #101a13;
+  --sl-color-black: var(--lb-surface-nav);
+
+  --sl-color-hairline: var(--lb-hairline);
+  --sl-color-hairline-light: var(--lb-hairline);
+  --sl-color-hairline-shade: var(--lb-hairline);
+
+  --sl-color-accent-low: #1f2215;
+  --sl-color-accent: var(--lb-gold);
+  --sl-color-accent-high: #feebbf;
+
+  --sl-color-text: #c6c9bc;
+  --sl-color-text-accent: var(--lb-gold);
+  --sl-color-text-invert: var(--lb-surface-nav);
+
+  /* Starlight tints its asides and badges from this ramp. Left generic they are
+     the one place the default palette would still show through. */
+  --sl-color-red: #e2705f;
+  --sl-color-red-low: #2c1a17;
+  --sl-color-red-high: #f0b3a9;
+  --sl-color-green: #66e2be;
+  --sl-color-green-low: #10261f;
+  --sl-color-green-high: #b0f0dd;
+  --sl-color-blue: var(--lb-lapis);
+  --sl-color-blue-low: var(--lb-lapis-soft);
+  --sl-color-blue-high: #b6d4ec;
+  --sl-color-orange: var(--lb-warn);
+  --sl-color-orange-low: #2a1d15;
+  --sl-color-orange-high: #e8c0a6;
+  --sl-color-purple: #b39ddb;
+  --sl-color-purple-low: #221c2e;
+  --sl-color-purple-high: #ddd2f0;
+}
+
+/* --------------------------------------------------------------------------
+   Light: the paper the papers are printed on. Values unchanged since the print pairing.
+-------------------------------------------------------------------------- */
+
+:root[data-theme="light"] {
+  --lb-surface-page: #ffffff;
+  --lb-surface-nav: #f7f6ef;
+  --lb-surface-card: #f7f6ef;
+  --lb-surface-inset: #faf9f3;
+  --lb-surface-green: #d8dbd0;
+  --lb-hairline: #e6e4d6;
+  --lb-hairline-strong: #d8d3bb;
+  --lb-accent-soft: #f5efdd;
+
+  --lb-ink: #12180f;
+  --lb-ink-soft: #3a4038;
+  --lb-muted: #6b7166;
+  --lb-rule: #d8dbd0;
+  --lb-panel: #f7f6ef;
+  --lb-panel-line: #e6e4d6;
+  --lb-gold: #8a6a1f;
+  --lb-lapis: #2f6ea8;
+  --lb-lapis-soft: #dfeaf5;
+  --lb-warn: #8c3b1e;
+
+  --lb-shadow-md: 0 4px 14px rgba(18, 24, 15, 0.08);
+  --lb-shadow-lg: 0 10px 30px rgba(18, 24, 15, 0.1);
+  --lb-inset-well: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  --sl-color-bg: var(--lb-surface-page);
+  --sl-color-bg-nav: var(--lb-surface-nav);
+  --sl-color-bg-sidebar: var(--lb-surface-nav);
+  --sl-color-bg-inline-code: var(--lb-panel);
+  --sl-color-bg-accent: var(--lb-gold);
+  --sl-color-backdrop-overlay: rgba(18, 24, 15, 0.55);
+  --lb-nav-bg: rgba(247, 246, 239, 0.82);
+
+  /* In light mode Starlight's "white" is the darkest ink, and the gray ramp runs
+     the other way. */
+  --sl-color-white: var(--lb-ink);
+  --sl-color-gray-1: #12180f;
+  --sl-color-gray-2: #3a4038;
+  --sl-color-gray-3: #6b7166;
+  --sl-color-gray-4: #8f9488;
+  --sl-color-gray-5: #d8dbd0;
+  --sl-color-gray-6: #e6e4d6;
+  --sl-color-gray-7: #f7f6ef;
+  --sl-color-black: #ffffff;
+
+  --sl-color-hairline: var(--lb-panel-line);
+  --sl-color-hairline-light: var(--lb-panel-line);
+  --sl-color-hairline-shade: var(--lb-rule);
+
+  /* The tint is figures.py's GOLD_TINT, so a callout on screen is the fill the
+     diagrams already use on the page. */
+  --sl-color-accent-low: #f0e6c9;
+  --sl-color-accent: var(--lb-gold);
+  --sl-color-accent-high: #5c4614;
+
+  --sl-color-text: var(--lb-ink-soft);
+  --sl-color-text-accent: var(--lb-gold);
+  --sl-color-text-invert: #ffffff;
+
+  --sl-color-red: #a3452a;
+  --sl-color-red-low: #f6e5df;
+  --sl-color-red-high: #6d2a17;
+  --sl-color-green: #1f7a63;
+  --sl-color-green-low: #dcf0ea;
+  --sl-color-green-high: #14513f;
+  --sl-color-blue: var(--lb-lapis);
+  --sl-color-blue-low: var(--lb-lapis-soft);
+  --sl-color-blue-high: #1d4a72;
+  --sl-color-orange: var(--lb-warn);
+  --sl-color-orange-low: #f9efe9;
+  --sl-color-orange-high: #6b2c16;
+  --sl-color-purple: #5b4a8a;
+  --sl-color-purple-low: #ece7f5;
+  --sl-color-purple-high: #3d3160;
+}
+
+/* --------------------------------------------------------------------------
+   The three global rules the landing page runs on. They are cheap and they
+   carry more of the brand than their length suggests.
+-------------------------------------------------------------------------- */
+
+/* One ring for everything focusable. It sets no radius of its own, so the
+   outline follows each control's, which is what stops the rounded chrome
+   squaring off at exactly the moment it is being used. */
+:focus-visible {
+  outline: 2px solid var(--lb-gold);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--lb-gold);
+  color: var(--lb-surface-nav);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Headings and prose.
+
+   Headings are chrome and stay in Figtree. Only the page title takes the
+   landing page's hero idiom of black weight, uppercase and negative tracking;
+   applying that to every `## 6.1 The spacing rule` would shout and would fight
+   the section numbers for the reader's attention.
+-------------------------------------------------------------------------- */
+
+h1#_top {
+  font-family: var(--lb-font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: var(--lb-ls-display);
+  line-height: 1.05;
+}
+
+/* The print theme rules off every h1 the same way, which is where this comes from. The
+   splash is the exception: its title is a hero rather than a chapter opening, and
+   Starlight marks that page on the html element for us. */
+html:not([data-has-hero]) h1#_top {
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--lb-gold);
+}
+html[data-has-hero] h1#_top { line-height: 0.92; }
+
+.sl-markdown-content :is(h2, h3, h4, h5, h6) {
+  font-family: var(--lb-font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Running prose in the face the PDF is set in. Scoped to the article so that
+   nothing in the nav, the sidebar or the contents list picks it up. */
+.sl-markdown-content :is(p, li, dd, blockquote, td, figcaption) {
+  font-family: var(--lb-font-prose);
+}
+
+/* Table headings are furniture rather than prose, so they take the label idiom
+   the sidebar and the callout headers use. */
+.sl-markdown-content th {
+  font-family: var(--lb-font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--lb-muted);
+}
+
+/* Every number in the document is set in the mono face and lined up, as on the
+   landing page, so a column of figures can be read down rather than across. */
+.sl-markdown-content :is(code, kbd, samp) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Chrome.
+-------------------------------------------------------------------------- */
+
+/* The bar is the landing page's: darker than the page, blurred, and closed by a
+   gold hairline rather than a grey one. */
+.header {
+  background: var(--lb-nav-bg);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--lb-hairline);
+}
+
+/* replacesTitle leaves the lockup as the only thing in the slot, so it wants the
+   optical height the landing page gives it rather than Starlight's line box. */
+.site-title img {
+  height: 26px;
+  width: auto;
+}
+@media (max-width: 50rem) {
+  .site-title img { height: 22px; }
+}
+
+.social-icons a {
+  color: var(--lb-muted);
+  transition: color 0.2s;
+}
+.social-icons a:hover { color: var(--lb-gold); }
+
+/* The sidebar's group heading is a label, not a link to read: it takes the
+   uppercase tracked idiom. The chapter titles under it stay sentence case,
+   because "Why nothing can go insolvent" set in caps is a line nobody reads. */
+nav.sidebar .group-label .large {
+  font-family: var(--lb-font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: var(--lb-ls-label);
+  text-transform: uppercase;
+  color: var(--lb-muted);
+}
+
+nav.sidebar a {
+  border-radius: var(--lb-radius-control);
+  font-family: var(--lb-font-display);
+}
+nav.sidebar a:hover { background: var(--lb-accent-soft); }
+
+/* The current chapter is the landing page's primary button, in the one place on
+   a documentation page where a filled gold block is the right amount of weight. */
+nav.sidebar a[aria-current="page"] {
+  background: var(--lb-gold);
+  color: var(--sl-color-text-invert);
+  font-weight: 500;
+}
+nav.sidebar a[aria-current="page"]:hover {
+  background: var(--lb-gold);
+  filter: brightness(1.08);
+}
+
+/* The contents list, matching the sidebar so the two rails read as one system. */
+starlight-toc a {
+  border-radius: var(--lb-radius-control);
+  font-family: var(--lb-font-display);
+}
+starlight-toc a[aria-current="true"] {
+  color: var(--lb-gold);
+  font-weight: 500;
+}
+
+/* Search, and the mobile menu button beside it, on the landing page's control. */
+site-search button,
+starlight-menu-button button {
+  border-radius: var(--lb-radius-control);
+  background: var(--lb-surface-inset);
+  border: 1px solid var(--lb-hairline);
+  font-family: var(--lb-font-display);
+  transition: border-color 0.2s, background 0.2s;
+}
+site-search button:hover,
+starlight-menu-button button:hover {
+  border-color: var(--lb-hairline-strong);
+}
+site-search kbd {
+  background: transparent;
+  color: var(--lb-muted);
+}
+site-search .dialog-frame {
+  border-radius: var(--lb-radius-lg);
+  border: 1px solid var(--lb-hairline);
+  box-shadow: var(--lb-shadow-lg);
+}
+
+/* Previous and next, as cards rather than as ruled boxes. */
+.pagination-links a {
+  border-radius: var(--lb-radius-md);
+  border-color: var(--lb-hairline);
+  background: var(--lb-surface-card);
+  box-shadow: var(--lb-inset-well);
+  transition: border-color 0.2s;
+}
+.pagination-links a:hover { border-color: var(--lb-hairline-strong); }
+.pagination-links .link-title {
+  font-family: var(--lb-font-display);
+  color: var(--sl-color-white);
+}
+
+/* Fenced code. Expressive Code ships its own dark theme, which is a blue-grey
+   that belongs to no part of this design; these put its frame back on the
+   page's own surfaces. */
+.expressive-code .frame pre {
+  background: var(--lb-surface-inset) !important;
+  border: 1px solid var(--lb-hairline) !important;
+  border-radius: var(--lb-radius-md) !important;
+}
+.expressive-code .frame .header {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: 1px solid var(--lb-hairline);
+}
+
+/* Wide tables scroll inside their own box rather than widening the page. */
+.sl-markdown-content table { display: block; overflow-x: auto; }
+
+/* --------------------------------------------------------------------------
+   The front door.
+
+   Styles for site/pages/index.astro. The splash is the PDF's cover doing the
+   same job in the browser: the lockup, the identity, and the legend that has to
+   be taught before any diagram uses it.
+-------------------------------------------------------------------------- */
+
+/* The mark, ghosted into the corner of the card that carries the identity.
+   Decorative, hidden from assistive tech, and clipped by the card rather than by
+   the page, which is what keeps it from bleeding into a scrollbar. */
+.lb-watermark {
+  position: absolute;
+  right: -70px;
+  bottom: -90px;
+  width: 260px;
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+}
+.lb-watermark svg,
+.lb-watermark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lb-splash-sub {
+  font-family: var(--lb-font-prose);
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.5;
+  color: var(--lb-ink-soft);
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+/* The identity, set in the mono face at the size the cover gives it. This is the
+   one line the whole document is an expansion of. */
+.lb-identity {
+  font-family: var(--lb-font-mono);
+  font-weight: 500;
+  font-size: clamp(30px, 5vw, 44px);
+  letter-spacing: 0.06em;
+  color: var(--sl-color-white);
+  margin: 0;
+}
+
+.lb-legend {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.lb-legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.lb-legend .lb-swatch {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  transform: translateY(1px);
+}
+.lb-legend .lb-swatch-gold { background: var(--lb-gold); }
+.lb-legend .lb-swatch-lapis { background: var(--lb-lapis); }
+.lb-legend .lb-sym {
+  font-family: var(--lb-font-mono);
+  font-weight: 500;
+  color: var(--sl-color-white);
+  min-width: 1.25ch;
+}
+.lb-legend .lb-gloss {
+  font-family: var(--lb-font-prose);
+  color: var(--lb-muted);
+}
+
+.lb-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--lb-surface-card);
+  border: 1px solid var(--lb-hairline);
+  border-radius: var(--lb-radius-xl);
+  box-shadow: var(--lb-shadow-lg);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.lb-claims {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem 1.25rem;
+  margin-block: 0 2.5rem;
+  align-items: start;
+}
+/* Starlight gives adjacent flow content a top margin, which on a grid pushes the
+   second and third columns down rather than spacing anything. */
+.lb-claims > .lb-claim { margin-top: 0; }
+.lb-claim h2 {
+  margin: 0 0 0.4rem;
+  font-family: var(--lb-font-display);
+  font-weight: 900;
+  font-size: clamp(19px, 2.2vw, 23px);
+  line-height: 1.1;
+  letter-spacing: var(--lb-ls-display);
+  text-transform: uppercase;
+  color: var(--sl-color-white);
+  border: none;
+}
+.lb-claim p {
+  margin: 0;
+  font-family: var(--lb-font-prose);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--lb-muted);
+  text-wrap: pretty;
+}
+
+/* The splash's own label, the same one the sidebar heading and the callout
+   headers use. */
+.lb-label {
+  font-family: var(--lb-font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--lb-ls-label);
+  text-transform: uppercase;
+  color: var(--lb-muted);
+}
+
+/* Starlight's link buttons, given the landing page's two treatments: one filled
+   gold gradient, and ghosts in soft gold beside it. Left unscoped, because a
+   button is a button wherever the document puts one. */
+.sl-link-button.primary {
+  background: linear-gradient(180deg, #e1c993, #cc9107);
+  border: 1px solid var(--lb-gold);
+  color: #080d09;
+  border-radius: var(--lb-radius-control);
+  font-family: var(--lb-font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: var(--lb-ls-label);
+  text-transform: uppercase;
+  transition: filter 0.2s, transform 0.05s;
+}
+.sl-link-button.primary:hover { filter: brightness(1.08); }
+.sl-link-button.primary:active { transform: translateY(1px); }
+
+.sl-link-button:not(.primary) {
+  background: var(--lb-accent-soft);
+  border: 1px solid var(--lb-hairline-strong);
+  color: var(--lb-gold);
+  border-radius: var(--lb-radius-control);
+  font-family: var(--lb-font-display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: var(--lb-ls-label);
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.sl-link-button:not(.primary):hover {
+  background: rgba(212, 178, 93, 0.18);
+  color: #feebbf;
+}
+
+/* The minimal variant is a text link in Starlight and should stay one, so it
+   keeps only the type treatment and loses the box. */
+.sl-link-button.minimal {
+  background: none;
+  border-color: transparent;
+  padding-inline: 0;
+}
+.sl-link-button.minimal:hover { background: none; }
+
+/* A button written as plain markup in a page, rather than as the component, gets the
+   colours above and none of the shape. Starlight keeps a link button's `display`,
+   padding and `text-decoration` in the component's own scoped stylesheet, which a
+   hand written class cannot match, and the markdown link rule then recolours what is
+   left: the download buttons rendered as underlined gold text on a gold field.
+   Restoring the shape here is what makes the class usable in prose. The padding is
+   the component's narrow pair rather than its wide one, because a button standing in
+   a paragraph is not a hero button and should not be sized like one. */
+.sl-markdown-content a.sl-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.4375rem 1.125rem;
+  line-height: 1.1875;
+  text-decoration: none;
+}
+.sl-markdown-content a.sl-link-button.primary,
+.sl-markdown-content a.sl-link-button.primary:hover {
+  color: #080d09;
+}
+.sl-markdown-content a.sl-link-button:not(.primary) { color: var(--lb-gold); }
+.sl-markdown-content a.sl-link-button:not(.primary):hover { color: #feebbf; }
+
+/* --------------------------------------------------------------------------
+   Section routes on the splash.
+
+   Starlight's splash template drops the sidebar, and with it the menu button,
+   so on a phone the front page had no navigation in it at all: a header, two
+   hero buttons and nothing else. These are that navigation. They are also the
+   only place the six sections are visible at once, which is worth having on a
+   desktop too.
+-------------------------------------------------------------------------- */
+
+.lb-routes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin-block: 0 2.5rem;
+}
+
+.lb-routes a {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--lb-hairline);
+  border-radius: var(--lb-radius-md);
+  background: var(--lb-surface-card);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.lb-routes a:hover {
+  border-color: var(--lb-gold);
+  background: var(--lb-accent-soft);
+}
+
+.lb-route-h {
+  display: block;
+  font-family: var(--lb-font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: var(--lb-ls-label);
+  text-transform: uppercase;
+  color: var(--lb-gold);
+  margin-bottom: 0.3rem;
+}
+
+.lb-route-p {
+  display: block;
+  font-family: var(--lb-font-prose);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--lb-muted);
+  text-wrap: pretty;
+}

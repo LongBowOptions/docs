@@ -1,0 +1,36 @@
+name: CI
+
+# The same build main gets, run before anything reaches main. Pushes to main are left
+# out because Deploy already builds those, and building them twice would tell us the
+# same thing twice. A branch that has an open pull request does get both events; that
+# is the price of also covering branches that have no pull request yet.
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+
+permissions:
+  contents: read
+
+# Only the newest commit on a ref is worth a verdict. Unlike the deploy, cancelling
+# here loses nothing: no run publishes anything.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # No separate typecheck step: @astrojs/check is not a dependency and bare tsc
+      # cannot parse .astro. The build is the gate.
+      - run: npm run build
