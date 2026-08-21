@@ -32,7 +32,7 @@ and it may be called once.
 
 Settlement is what turns two claims on a deposit into two known shares of it. Before it,
 the only exit is merge. After it, each leg redeems independently.
-[Settlement](/options/settlement/) is the whole of how that number is produced.
+[Settlement](/docs/options/settlement/) is the whole of how that number is produced.
 
 ## Redeem
 

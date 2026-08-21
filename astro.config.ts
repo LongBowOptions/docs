@@ -24,7 +24,15 @@ import rehypeKatex from "rehype-katex";
  */
 export default defineConfig({
   srcDir: "./site",
-  site: "https://docs.longbowoptions.com",
+  /*
+   * Served as a GitHub project page, so the site lives one path segment deep rather
+   * than at a domain root: longbowoptions.github.io/docs/. `base` is what puts that
+   * segment in front of every emitted asset and route. It is temporary. The custom
+   * domain in public/CNAME is the intended home, and moving there means deleting the
+   * base and restoring the site below, at which point the site is at a root again.
+   */
+  site: "https://longbowoptions.github.io",
+  base: "/docs",
   markdown: {
     // Astro 7 takes a processor rather than bare plugin arrays. Same two plugins.
     processor: unified({
@@ -85,7 +93,7 @@ export default defineConfig({
       },
       // A link shared anywhere shows the same card the landing page shows.
       head: [
-        { tag: "meta", attrs: { property: "og:image", content: "https://docs.longbowoptions.com/og.png" } },
+        { tag: "meta", attrs: { property: "og:image", content: "https://longbowoptions.github.io/docs/og.png" } },
         { tag: "meta", attrs: { name: "twitter:card", content: "summary_large_image" } },
       ],
       /*

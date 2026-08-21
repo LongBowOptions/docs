@@ -26,14 +26,14 @@ question that this documentation does not attempt to answer.
 
 **Parameter calibration.** The strike grid ratio, the window, the spacing, the depth floor
 and the minimum count all want setting per underlying rather than once for the protocol.
-[Parameters](/options/parameters/) lists them and says what each one trades off.
+[Parameters](/docs/options/parameters/) lists them and says what each one trades off.
 
 **Venue policy.** Which series are listed, on what, and with what settlement configuration
 is a policy question rather than a property of the escrow.
 
 **The token.** \$LONG has a published design and no implementation. The ladder is built out
 of this primitive and needs nothing new from it, but the pool, the hook and the fee path
-are described rather than built. See [what \$LONG is](/token/).
+are described rather than built. See [what \$LONG is](/docs/introduction/).
 
 ## What is not deferred
 

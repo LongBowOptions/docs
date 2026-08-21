@@ -45,7 +45,7 @@ Cash means the dollar stablecoin a series is quoted in, and the asset means the 
 series is written on. Both must be ordinary tokens with no behaviour of their own. That is
 a constraint on what may be listed rather than an assumption about what exists:
 only plain tokens can be listed, and
-[what this does not do](/options/what-this-does-not-do/) says what that rules out.
+[what this does not do](/docs/options/what-this-does-not-do/) says what that rules out.
 
 Series are listed rather than created on demand. A holder cannot conjure the series they
 want into existence.

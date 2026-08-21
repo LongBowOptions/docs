@@ -8,7 +8,7 @@ hero:
   image:
     html: |
       <div class="lb-card">
-        <img class="lb-watermark" src="/logo-mark.svg" alt="" aria-hidden="true" />
+        <img class="lb-watermark" src="/docs/logo-mark.svg" alt="" aria-hidden="true" />
         <p class="lb-label">The identity</p>
         <p class="lb-identity">O + N = 1</p>
         <ul class="lb-legend">
@@ -26,10 +26,10 @@ hero:
       </div>
   actions:
     - text: Start reading
-      link: /options/overview/
+      link: /docs/options/overview/
       variant: primary
     - text: Download the whitepaper
-      link: /longbow-whitepaper.pdf
+      link: /docs/longbow-whitepaper.pdf
       variant: secondary
     - text: longbowoptions.com
       link: https://longbowoptions.com
@@ -52,19 +52,19 @@ hero:
 </div>
 
 <nav class="lb-routes" aria-label="Sections">
-  <a href="/introduction/what-is-longbow/">
+  <a href="/docs/introduction/what-is-longbow/">
     <span class="lb-route-h">Introduction</span>
     <span class="lb-route-p">Longbow itself, and the things it builds.</span>
   </a>
-  <a href="/options/overview/">
+  <a href="/docs/options/overview/">
     <span class="lb-route-h">Longbow Options</span>
     <span class="lb-route-p">The options product: the mechanism, its parameters and its limits.</span>
   </a>
-  <a href="/token/">
+  <a href="/docs/introduction/">
     <span class="lb-route-h">&#36;LONG</span>
     <span class="lb-route-p">The token, the curve that opens it and the ladder that distributes it.</span>
   </a>
-  <a href="/reference/glossary/">
+  <a href="/docs/reference/glossary/">
     <span class="lb-route-h">Reference</span>
     <span class="lb-route-p">Glossary, and the questions the design attracts most.</span>
   </a>

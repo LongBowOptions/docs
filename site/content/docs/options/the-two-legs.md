@@ -28,7 +28,7 @@ $$
 
 The denominator $b$ is the numeraire the series is secured in. Which arguments go where
 is what distinguishes a call series from a put series, and
-[instruments](/options/instruments/) is where that is set out.
+[instruments](/docs/options/instruments/) is where that is set out.
 
 ## Why the option leg is the residual
 

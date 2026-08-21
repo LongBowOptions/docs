@@ -53,12 +53,12 @@ carries the full downside below the strike exactly as those positions do. Nothin
 described as protected.
 
 Settlement reads a price off a market, and a market can be pushed. A well funded party can
-move a sampled median. [What this does not do](/options/what-this-does-not-do/) states
+move a sampled median. [What this does not do](/docs/options/what-this-does-not-do/) states
 every cost at full strength rather than leaving it to be worked out.
 
 ## Where to go next
 
-[The two legs](/options/the-two-legs/) is where the mechanism starts. It computes no option
+[The two legs](/docs/options/the-two-legs/) is where the mechanism starts. It computes no option
 value at any point, reads no volatility, and runs no pricing model: what a leg is worth is
 whatever the market pays for it, and what it redeems for is a share of one deposit fixed by
 arithmetic.

@@ -39,7 +39,7 @@ and expiry, which is a consequence holders should know about before they need to
 ## The sampling window
 
 The window opens at $T - W$ and closes at expiry. Samples may be recorded inside it and at
-no other time. [Settlement](/options/settlement/) covers what a valid sample is and how
+no other time. [Settlement](/docs/options/settlement/) covers what a valid sample is and how
 many are needed.
 
 ## Settlement and redemption

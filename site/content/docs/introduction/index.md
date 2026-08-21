@@ -1,5 +1,5 @@
 ---
-title: $LONG Summary
+title: $LONG
 description: What the token is, the two ways to get it, and what the fees do.
 sidebar:
   order: 3
@@ -36,9 +36,7 @@ buy the right to some of those tokens if the price gets high enough up in a cert
 
 What each rung costs a starting price and increases as more people buy them. Options can't be sold back into the curve
 
-## The fees
-
-There are three, and all of them do the same thing: **buy \$LONG and burn it.**
+## Pool fees
 
 | Fee | What it costs | When it is charged |
 | --- | --- | --- |

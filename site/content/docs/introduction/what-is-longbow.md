@@ -8,4 +8,4 @@ sidebar:
 Not written yet.
 
 This page is about Longbow itself, rather than about any one of the things it builds.
-[Longbow Options](/options/overview/) and [\$LONG](/token/) are both documented in full.
+[Longbow Options](/docs/options/overview/) and [\$LONG](/docs/introduction/) are both documented in full.

@@ -12,14 +12,14 @@ the kernel, the argument for the settlement mechanism stated with its assumption
 the conservation proofs for each of the four operations, and a full worked appendix.
 
 <p>
-  <a class="sl-link-button primary" href="/longbow-whitepaper.pdf">Download the PDF</a>
+  <a class="sl-link-button primary" href="/docs/longbow-whitepaper.pdf">Download the PDF</a>
 </p>
 
 ## Which to read
 
 Read these pages if you want to understand what Longbow does and what it costs. Everything
 load bearing is here, including every item in
-[what this does not do](/options/what-this-does-not-do/).
+[what this does not do](/docs/options/what-this-does-not-do/).
 
 Read the whitepaper if you want the arguments rather than the conclusions, or if you are
 reviewing the design rather than using it.
