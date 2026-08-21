@@ -60,7 +60,7 @@ hero:
     <span class="lb-route-h">Longbow Options</span>
     <span class="lb-route-p">The options product: the mechanism, its parameters and its limits.</span>
   </a>
-  <a href="/docs/introduction/">
+  <a href="/docs/token/">
     <span class="lb-route-h">&#36;LONG</span>
     <span class="lb-route-p">The token, the curve that opens it and the ladder that distributes it.</span>
   </a>

@@ -33,7 +33,7 @@ is a policy question rather than a property of the escrow.
 
 **The token.** \$LONG has a published design and no implementation. The ladder is built out
 of this primitive and needs nothing new from it, but the pool, the hook and the fee path
-are described rather than built. See [what \$LONG is](/docs/introduction/).
+are described rather than built. See [what \$LONG is](/docs/token/).
 
 ## What is not deferred
 

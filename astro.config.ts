@@ -33,6 +33,15 @@ export default defineConfig({
    */
   site: "https://longbowoptions.github.io",
   base: "/docs",
+  /*
+   * $LONG is referred to as /token from everywhere that links to it, because that is
+   * the name of the subject rather than the name of a folder it happens to sit in.
+   * The page itself lives under introduction/, so this maps the one onto the other and
+   * the references stay stable if the file is ever filed somewhere else.
+   */
+  redirects: {
+    "/token": "/docs/introduction/token/",
+  },
   markdown: {
     // Astro 7 takes a processor rather than bare plugin arrays. Same two plugins.
     processor: unified({
@@ -68,7 +77,15 @@ export default defineConfig({
       // Unconditional. The sidebar is generated from the files that exist rather than
       // from a manifest that can run ahead of them, so a broken internal link is never
       // legitimate and is always worth failing the build over.
-      plugins: [starlightLinksValidator()],
+      plugins: [
+        starlightLinksValidator({
+          // /docs/token/ is a redirect, and redirects are emitted by Astro rather than
+          // by Starlight, so the validator cannot see the route and calls the link dead.
+          // The route is real: dist/token/index.html. This is the exclusion the plugin
+          // documents for pages it cannot resolve, and it is the only one.
+          exclude: ["/docs/token/"],
+        }),
+      ],
       pagination: true,
       lastUpdated: false,
       // The lockup replaces the title because it contains it: brand/FullLogo.svg
